@@ -41,9 +41,9 @@ class Principal: UIViewController {
     }
     
     @objc func action() {
-        if centinela == true {
-            timer.invalidate()
-        }
+        //if centinela == true {
+          //  timer.invalidate()
+        //}
         
         lblTimer.text = "0" //Reset
         time += 1 //Incrementa los ml de Agua de se deben de tomar.
