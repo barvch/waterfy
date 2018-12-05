@@ -15,7 +15,7 @@ class Principal: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         navigationItem.title = "Resúmen"
         nombreUsuario.text = cadenaNombre
-        print("\(pesoPersona)")
+        vasosUsuario.text = String(calcularPeso(peso: pesoPersona))
     }
     
     override func didReceiveMemoryWarning() {
@@ -25,28 +25,35 @@ class Principal: UIViewController {
     
     //Variables para los Segues
     
-    var centinela = false
-    
-    lazy var pesoPersona = Int()
+    lazy var pesoPersona : Int = 0
     @IBOutlet weak var nombreUsuario: UILabel!
     var cadenaNombre = String()
+    
+    @IBOutlet weak var vasosUsuario: UILabel!
+    
     
     @IBOutlet weak var lblTimer: UILabel!
     var time = 0
     var timer  = Timer()
     
+    func calcularPeso(peso: Int) -> Int {
+        var vasosPorDia = peso / 7
+        return vasosPorDia
+    }
+    
+    func calcularCantidadAguaPorMinuto() -> Int {
+        var mlPorMin = ((calcularPeso(peso: pesoPersona) * 250) / 24) / 60
+        return mlPorMin
+    }
+    
     @IBAction func equilibrioPressed(_ sender: UIButton) {
-        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(Principal.action), userInfo: nil, repeats: true)
-        centinela = true
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(Principal.action), userInfo: nil, repeats: true)
+
     }
     
     @objc func action() {
-        //if centinela == true {
-          //  timer.invalidate()
-        //}
-        
         lblTimer.text = "0" //Reset
-        time += 1 //Incrementa los ml de Agua de se deben de tomar.
+        time += calcularCantidadAguaPorMinuto() //Incrementa los ml de Agua de se deben de tomar.
         lblTimer.text = "\(String(time)) ml" //Hace el Display en pantalla.
     }
 
