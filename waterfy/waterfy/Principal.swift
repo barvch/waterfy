@@ -16,6 +16,7 @@ class Principal: UIViewController {
         navigationItem.title = "Resúmen"
         nombreUsuario.text = cadenaNombre
         vasosUsuario.text = String(calcularPeso(peso: pesoPersona))
+        alerta(titulo: "Todo Listo", mensaje: "Presina el botón de abajo para empezar a contar el agua que bebes.")
     }
     
     override func didReceiveMemoryWarning() {
@@ -49,19 +50,19 @@ class Principal: UIViewController {
     }
     
     func aguaPorDia() -> Int {
-        var res = calcularPeso(peso: pesoPersona) * 250 //Cantidad en ml que debe de tomar en el día
+        var res = calcularPeso(peso: pesoPersona) * 250 // Cantidad en ml que debe de tomar en el día
         return res
         
     }
     
-    func alerta(titulo: String, mensaje : String) {
+    func alerta(titulo: String, mensaje : String) { // Para crear alertas.
         let alertaObjeto = UIAlertController(title: titulo, message: mensaje, preferredStyle: UIAlertControllerStyle.alert)
         
         alertaObjeto.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
             alertaObjeto.dismiss(animated: true, completion: nil)
         }))
         
-        self.present(alertaObjeto, animated: true, completion: nil)
+        self.present(alertaObjeto, animated: true, completion: nil) //Display
     }
 
     
@@ -82,10 +83,9 @@ class Principal: UIViewController {
     }
     
     @objc func action() {
-            lblTimer.text = "0" //Reset
-            time += calcularCantidadAguaPorMinuto() //Incrementa los ml de Agua de se deben de tomar.
-            lblTimer.text = "\(String(time)) ml" //Hace el Display en pantalla.
+            lblTimer.text = "0" // Reset
+            time += calcularCantidadAguaPorMinuto() // Incrementa los ml de Agua de se deben de tomar.
+            lblTimer.text = "\(String(time)) ml" // Hace el Display en pantalla.
         }
         
     }
-
