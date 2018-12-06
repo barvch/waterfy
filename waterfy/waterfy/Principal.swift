@@ -22,14 +22,16 @@ class Principal: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    @IBOutlet weak var mlTomados: UILabel!
     
-    //Variables para los Segues
+    // Variables para los Segues
     
     lazy var pesoPersona : Int = 0
     @IBOutlet weak var nombreUsuario: UILabel!
     var cadenaNombre = String()
     
     @IBOutlet weak var vasosUsuario: UILabel!
+    var cantidadTomada = 0
     
     
     @IBOutlet weak var lblTimer: UILabel!
@@ -46,11 +48,37 @@ class Principal: UIViewController {
         return mlPorMin
     }
     
-    @IBAction func equilibrioPressed(_ sender: UIButton) {
-        time = 0
-        timer.invalidate()
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(Principal.action), userInfo: nil, repeats: true)
+    func aguaPorDia() -> Int {
+        var res = calcularPeso(peso: pesoPersona) * 250 //Cantidad en ml que debe de tomar en el día
+        return res
+        
+    }
+    
+    func alerta(titulo: String, mensaje : String) {
+        let alertaObjeto = UIAlertController(title: titulo, message: mensaje, preferredStyle: UIAlertControllerStyle.alert)
+        
+        alertaObjeto.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: { (action) in
+            alertaObjeto.dismiss(animated: true, completion: nil)
+        }))
+        
+        self.present(alertaObjeto, animated: true, completion: nil)
+    }
 
+    
+    
+    @IBAction func equilibrioPressed(_ sender: UIButton) {
+        cantidadTomada += time
+        
+        mlTomados.text = "\(cantidadTomada) ml de agua tomados hoy."
+        
+        if cantidadTomada >= aguaPorDia() {
+            alerta(titulo: "¡Felicidades!", mensaje: "Tomaste el agua necesaria por hoy. Tómate un descanso.")
+        } else {
+            time = 0
+            timer.invalidate()
+            timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(Principal.action), userInfo: nil, repeats: true)
+        }
+        
     }
     
     @objc func action() {
@@ -60,5 +88,4 @@ class Principal: UIViewController {
         }
         
     }
-
 

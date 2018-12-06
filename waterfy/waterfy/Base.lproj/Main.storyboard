@@ -218,15 +218,23 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gotaAgua" translatesAutoresizingMaskIntoConstraints="NO" id="uMN-IZ-gHT">
-                                <rect key="frame" x="88" y="329" width="240" height="128"/>
+                                <rect key="frame" x="54" y="319" width="129" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="ml tomados" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wt7-Lt-9cb">
+                                <rect key="frame" x="191" y="319" width="170" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <color key="textColor" red="0.3600169735" green="0.42642834829999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="5Vv-nR-Rcd"/>
                     </view>
                     <connections>
                         <outlet property="lblTimer" destination="edk-ve-WZn" id="oZR-w1-lxh"/>
+                        <outlet property="mlTomados" destination="wt7-Lt-9cb" id="H0Q-S0-wu6"/>
                         <outlet property="nombreUsuario" destination="Ran-vw-PRW" id="PF1-uS-SPx"/>
                         <outlet property="vasosUsuario" destination="aEm-zM-QHo" id="2b8-pC-93Y"/>
                     </connections>
