@@ -23,9 +23,6 @@ class Principal: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    //Pasa saber si el botón de Equilibrio ya fue presionado
-    var centinela = false
-    
     //Variables para los Segues
     
     lazy var pesoPersona : Int = 0
@@ -50,22 +47,18 @@ class Principal: UIViewController {
     }
     
     @IBAction func equilibrioPressed(_ sender: UIButton) {
-        timer = Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(Principal.action), userInfo: nil, repeats: true)
+        time = 0
+        timer.invalidate()
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(Principal.action), userInfo: nil, repeats: true)
 
     }
     
     @objc func action() {
-        if centinela == false { // primera vez que lo toca
             lblTimer.text = "0" //Reset
             time += calcularCantidadAguaPorMinuto() //Incrementa los ml de Agua de se deben de tomar.
             lblTimer.text = "\(String(time)) ml" //Hace el Display en pantalla.
-            centinela = true
-        } else {
-            timer.invalidate() // Cancelar el primer timer.
-            centinela = false //Reset al centinela.
-            
         }
         
     }
 
-}
+
